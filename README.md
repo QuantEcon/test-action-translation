@@ -8,8 +8,8 @@ against the same goldens. A golden is a real lecture from a QuantEcon edition, p
 translation people have approved. Results are recorded per language, so the repository builds a
 history of how each model does in each language.
 
-**Status (2026-10-20):** the goldens are pinned and verified. `model-eval`, the runner, is not
-built yet, and no evaluation has run.
+**Status (2026-10-20):** the goldens are pinned and verified. `model-eval`, the runner, is
+specified in [DESIGN.md](DESIGN.md) but not built yet, and no evaluation has run.
 
 ## What is here
 
@@ -18,6 +18,8 @@ built yet, and no evaluation has run.
 | `goldens/manifest.yml` | The golden set: 18 lectures in four languages. Each file is pinned by repository, commit, path, sha256 and size |
 | `goldens/README.md` | What each golden is, where it came from, its caveats, and how to add a lecture or a language |
 | `bin/fetch-goldens.mjs` | Fetches the pinned files into `.goldens/` (git-ignored) and verifies every byte |
+| `DESIGN.md` | The spec for `model-eval`: its command, scoring, rules, tests and cost |
+| `AGENTS.md` | Guidance for coding agents working here |
 | `history/` | One file per language that records each evaluated model's scores (written by `model-eval --record`) |
 | `reports/` | One directory per evaluation, holding the report a model-change decision cites |
 
@@ -51,7 +53,8 @@ The `/model-upgrade` skill in action-translation walks through these steps:
    - It scores the drafts with deterministic metrics only. There is no LLM judge.
    - It applies per-language rules, writes `reports/<date>-<candidate>-vs-<baseline>/`, and
      appends `history/<lang>.jsonl`.
-   - A run costs about $40–50, and `--plan` prints the estimate before anything is spent.
+   - A standard run costs about $36, or about $83 with Opus 5.5 as a third model. `--plan`
+     prints the estimate before anything is spent.
 3. **Decide per language.** On PASS, the edition follows the new default. On FAIL or
    INCONCLUSIVE, the edition keeps the old model (`claude-model:` in its workflows) until its
    editor has reviewed drafts from the new one.
