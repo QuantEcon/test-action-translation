@@ -1,0 +1,6 @@
+node_modules/
+.goldens/
+.eval/
+__pycache__/
+*.tmp-*
+.DS_Store

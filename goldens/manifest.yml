@@ -1,0 +1,173 @@
+# The golden set: the references every model upgrade of QuantEcon/action-translation is measured
+# against. Each file is pinned by repository, commit, path, sha256 and size and is fetched at run
+# time (bin/fetch-goldens.mjs verifies every byte). Kinds, provenance and how to add a lecture or a
+# language: goldens/README.md. Pins verified 2026-10-20.
+schema: test-action-translation/goldens/1
+languages:
+  ml:
+    name: Malayalam
+    localize: none
+    verbatimDirectives: true
+    goldens:
+      - id: ml-getting_started
+        lecture: getting_started.md
+        kind: hand
+        inSample: false
+        source: { repo: QuantEcon/lecture-python-programming, sha: b0c58ab96a9c537fcf766e4f2d9fd32f4a0fc2f7, path: lectures/getting_started.md, sha256: 6e13c028a70102562f62778fe86f1f87d1403f1bbad0fce7730adc0bc11accc1, bytes: 18086 }
+        gold: { repo: QuantEcon/action-translation, sha: 87eacfc2c27608c3f9c3962444a793ef1e9356af, path: experiments/ml-benchmark/reference/getting_started.md, sha256: e79a7596bf2b3b48be67a74b86c274221c422b80138f2c41e953e44ee040710a, bytes: 34342 }
+        origin: { repo: adisankarmt/quantecon-malayalam, sha: c30578f3ac685db51ecd28ce0549e3008d71f77d, path: getting_started.md, sha256: e79a7596bf2b3b48be67a74b86c274221c422b80138f2c41e953e44ee040710a, bytes: 34342 }
+        notes: "Adisankar Manoj Thanuja's hand translation, with no model behind it: the unbiased anchor. Byte-identical to adisankarmt/quantecon-malayalam@c30578f (pinned as origin). Not in the ml edition, but the English lecture is in production in fa, fr and zh-cn. Contains a few fully-English sentences and two typos ('eentire', 'substanial') that are part of the artifact."
+      - id: ml-python_by_example
+        lecture: python_by_example.md
+        kind: post-edited
+        seedModel: claude-sonnet-5
+        inSample: true
+        source: { repo: QuantEcon/lecture-python-programming, sha: 3241a07f00b1fb4d2bebc6989d1f480847e08e31, path: lectures/python_by_example.md, sha256: a980a428c02287d98542876d1afbd78f861c630c1c2201f829bbebc7dbcf763f, bytes: 18177 }
+        seed: { repo: QuantEcon/lecture-python-programming.ml, sha: ff09b87e96c88f351a304e46b68a57bac3c9dd63, path: lectures/python_by_example.md, sha256: c175825f84b394c4f84469c5e36e6ccceddb7a47ba7602346777aeee52c14a7b, bytes: 30842 }
+        gold: { repo: QuantEcon/lecture-python-programming.ml, sha: cd757e07bb43b45732793bbd1413321399740a1a, path: lectures/python_by_example.md, sha256: 66fee089eab016a1df0cc96c51f9ef8dd313b326e971f53671e4e8254c00dbbb, bytes: 32154 }
+        notes: "Round 1 (ml#1). Seed: one claude-sonnet-5 draft through the sync path, unrepaired. Gold: the merge (our 100 flags applied, then his suggestion blocks); no separate normalisation commit. Source pinned at 3241a07, byte-identical to 1c60c7d/5816589 that the seed was made from."
+      - id: ml-functions
+        lecture: functions.md
+        kind: post-edited
+        seedModel: claude-sonnet-5
+        inSample: true
+        source: { repo: QuantEcon/lecture-python-programming, sha: b0c58ab96a9c537fcf766e4f2d9fd32f4a0fc2f7, path: lectures/functions.md, sha256: 1fa4eab23aa4a96ab18be7e4b9e3327a9c6fdd57dbcb031b2bac4b8674b555ec, bytes: 16307 }
+        seed: { repo: QuantEcon/lecture-python-programming.ml, sha: 77683721eb99135542e4e8f554a900f11cbb00c7, path: lectures/functions.md, sha256: e9520f049acbacf4e62411ba31e4cd5255ebefc65c520a7879ee000966af61bc, bytes: 28679 }
+        gold: { repo: QuantEcon/lecture-python-programming.ml, sha: c1200faf308e93636f671062bef7b5bbd7308787, path: lectures/functions.md, sha256: 845807b7d9bf2c3f96039ec878873691603e25e4bc18447a1a6052a522db50a4, bytes: 29404 }
+        editorOnly: { repo: QuantEcon/lecture-python-programming.ml, sha: a8d7d239f5f5fbe360288c3fdf2d220edca1c725, path: lectures/functions.md, sha256: e166c1bbbe261d1307610c04f344a4f06cdebd1d85f507d76e1a308f887eddf5, bytes: 29412 }
+        notes: "Round 2 (ml#7). Seed: one local claude-sonnet-5 draft, unrepaired. Gold: c1200fa, which includes our normalisation commit 9db1eef (whitespace, --, one full stop); editorOnly is his text before it, so normalisation sites can be dropped from adoption."
+      - id: ml-matplotlib
+        lecture: matplotlib.md
+        kind: post-edited
+        seedModel: claude-sonnet-5
+        inSample: true
+        source: { repo: QuantEcon/lecture-python-programming, sha: b0c58ab96a9c537fcf766e4f2d9fd32f4a0fc2f7, path: lectures/matplotlib.md, sha256: 3090de43fe488ebbd2ab902639a5bc2bd1dddc22a653c32fa68ed93a2edcf51f, bytes: 12471 }
+        seed: { repo: QuantEcon/lecture-python-programming.ml, sha: 9e8616b041246a37a1b7cfafb3f8003a030bb248, path: lectures/matplotlib.md, sha256: 6333770b0cb32c7d482a889d5bf209eb6a807cc00e14614fb59133602afa8f03, bytes: 18727 }
+        gold: { repo: QuantEcon/lecture-python-programming.ml, sha: a24e925c15ba404125f02571e2fc1a28b2fedad0, path: lectures/matplotlib.md, sha256: 66e9cc51bed5e2ca3fc9f04c6d0f678cf86f6f483f1e8b3a48ccc4f4cbb929d5, bytes: 19524 }
+        editorOnly: { repo: QuantEcon/lecture-python-programming.ml, sha: 485f6d42842e2cbf4b4928ea5ee39a01f34f7b53, path: lectures/matplotlib.md, sha256: 1e7bbc6b641edd08155b64203ebd40631c10b47a67eacea024284bd6a4b56f5e, bytes: 19516 }
+        notes: "Round 3 (ml#13). Seed: the v0.28.0 regeneration that was reviewed (the v0.27.0 draw was superseded). Gold: a24e925, the editor's correction of that seed — NOT the later ml#24 page. editorOnly 485f6d4 is before our 9-line normalisation 2411a3b."
+      - id: ml-numpy
+        lecture: numpy.md
+        kind: post-edited
+        seedModel: claude-sonnet-5
+        inSample: true
+        source: { repo: QuantEcon/lecture-python-programming, sha: b0c58ab96a9c537fcf766e4f2d9fd32f4a0fc2f7, path: lectures/numpy.md, sha256: 225e568121fd0c28b11cc955e9b2b8560832b189c432f0372ae703ae6dfe946c, bytes: 39618 }
+        seed: { repo: QuantEcon/lecture-python-programming.ml, sha: 889d00125f8d5360556255cd3f9a7341ec8d535d, path: lectures/numpy.md, sha256: 219fde21a42748182a08fa2ee0f6ba933da48122b24a34b35dc0910aef1f5b25, bytes: 53132 }
+        gold: { repo: QuantEcon/lecture-python-programming.ml, sha: 7e373de957695cea53d3c40e8081c01515036197, path: lectures/numpy.md, sha256: f2d86417d1efe2832b953be5e7e029fb69c7843a258a3a70435af55169cae74c, bytes: 53929 }
+        editorOnly: { repo: QuantEcon/lecture-python-programming.ml, sha: 441d957678a1fe010dbcc139baa86d775339f690, path: lectures/numpy.md, sha256: daac7924bf417ac8c324263ee55fa8004e3e70e252b7b9774cee7504772d92c9, bytes: 53932 }
+        notes: "Round 4 (ml#23). Seed: draw 1 of 3 at v0.29.2, chosen by lint and repaired with one -ഉം comma. Gold: 7e373de; editorOnly 441d957 is before our normalisation e66f4bf (four suggestions)."
+      - id: ml-pandas
+        lecture: pandas.md
+        kind: post-edited
+        seedModel: claude-sonnet-5
+        inSample: true
+        source: { repo: QuantEcon/lecture-python-programming, sha: b0c58ab96a9c537fcf766e4f2d9fd32f4a0fc2f7, path: lectures/pandas.md, sha256: 1a5aafd3078491f4b30e0238e92ac5820c1baab29c4c8b71644e4b582bff9458, bytes: 24269 }
+        seed: { repo: QuantEcon/lecture-python-programming.ml, sha: a4b45b300bde943c7940ea92cabb6e6383b9b811, path: lectures/pandas.md, sha256: 727afcd529c5de6c0509cefc6444850cc6352b43db84f394a671eb4390591bb3, bytes: 37019 }
+        gold: { repo: QuantEcon/lecture-python-programming.ml, sha: 5378fd35e79aabdbd677605deed08eec11ef0ca6, path: lectures/pandas.md, sha256: 9c60dc300a169b981f77ce8d15b7e234020a56b232fc36ad0915c902384cda04, bytes: 37921 }
+        editorOnly: { repo: QuantEcon/lecture-python-programming.ml, sha: 006c855969fd11df748fadcd14927da356b60b92, path: lectures/pandas.md, sha256: 3f1227003496db99019f46303e22838c7d7dd6b773831c9d598448df935ae859, bytes: 37922 }
+        notes: "Round 5 (ml#26). Seed: draw 1 of 3 at v0.29.3, chosen by lint and repaired with ml_repair (11 changes, disclosed). Gold: 5378fd3; editorOnly 006c855 is before our normalisation 5da1c5c."
+  fr:
+    name: French
+    localize: default
+    verbatimDirectives: false
+    goldens:
+      - id: fr-numpy
+        lecture: numpy.md
+        kind: post-edited
+        seedModel: claude-opus-4-8
+        inSample: true
+        source: { repo: QuantEcon/lecture-python-programming, sha: a2b929f15e703b6942e8b80a29011c51f234b1e0, path: lectures/numpy.md, sha256: 8713378e113800b1aac9e7a5e729c800eb200726c820dc01e0c314572c116b5e, bytes: 39438 }
+        seed: { repo: QuantEcon/lecture-python-programming.fr, sha: 2a0cb46585a5d30a95b30d234bdc9a2eae8f9e97, path: lectures/numpy.md, sha256: 137361db557df9608ecf2ac1bc1044313fdd3414629a041b3972d37f4518d5bd, bytes: 43898 }
+        gold: { repo: QuantEcon/lecture-python-programming.fr, sha: 8c7358555779da0a716ef3bddf18413f7bf1569f, path: lectures/numpy.md, sha256: d06fd21f6e8fbe24a605a1cb287b05baaa97c5d9f4a00430085902f778492d5a, bytes: 44253 }
+        notes: "Round 1, fr#24 (Emile), squash-merged 2026-08-04. Seed = the opus-4-8 bulk seed (fr#1). The editor deliberately dropped a duplicated {index} directive, so the gold has one fewer directive than the source. Gold has 4 plain spaces before a colon (U+00A0 elsewhere): normalise NBSP before scoring."
+      - id: fr-python_by_example
+        lecture: python_by_example.md
+        kind: post-edited
+        seedModel: claude-opus-4-8
+        inSample: true
+        source: { repo: QuantEcon/lecture-python-programming, sha: 3241a07f00b1fb4d2bebc6989d1f480847e08e31, path: lectures/python_by_example.md, sha256: a980a428c02287d98542876d1afbd78f861c630c1c2201f829bbebc7dbcf763f, bytes: 18177 }
+        seed: { repo: QuantEcon/lecture-python-programming.fr, sha: 8c7358555779da0a716ef3bddf18413f7bf1569f, path: lectures/python_by_example.md, sha256: a73b49ab883b4c519d88df5d5474645fb432e97a3cd149f619cd23d87e47295a, bytes: 21523 }
+        gold: { repo: QuantEcon/lecture-python-programming.fr, sha: 83ff3d34b5b00f45ffcdfe8b097df7362f71202d, path: lectures/python_by_example.md, sha256: 9a34a5ce913cad2731b67ae1c0e47321ec6a7318f8e54dee79ebb7c992620615, bytes: 21717 }
+        notes: "Round 1, fr#25, squash-merged 2026-08-04. Seed = the opus-4-8 bulk seed. 2 of the 27 changed lines translate code comments. Gold has 1 plain space before a colon: normalise NBSP before scoring."
+      - id: fr-functions
+        lecture: functions.md
+        kind: post-edited
+        seedModel: claude-opus-4-8
+        inSample: true
+        source: { repo: QuantEcon/lecture-python-programming, sha: aacff3815993e8bea8db7b63df72a0a038e220c1, path: lectures/functions.md, sha256: 1fa4eab23aa4a96ab18be7e4b9e3327a9c6fdd57dbcb031b2bac4b8674b555ec, bytes: 16307 }
+        seed: { repo: QuantEcon/lecture-python-programming.fr, sha: 097ff8b7513bab217f62dce958ed322ac8c1a918, path: lectures/functions.md, sha256: 69dfc5a2265ada796097b3a458ac65ab9714329443f8549c7d3ad9890bb26f88, bytes: 19162 }
+        gold: { repo: QuantEcon/lecture-python-programming.fr, sha: bd3f431b7ac2de252ca59be79eb4b3f3635c9be5, path: lectures/functions.md, sha256: 954bbafed49431e59fa706dd21e9dbf7304c1a6a05c15689016942e291a4c3f9, bytes: 19205 }
+        notes: Round 2, fr#77, squash-merged 2026-09-23. Seed = the opus-4-8 bulk seed except one line re-translated by a claude-sonnet-5 sync (fr#29, FILO -> LIFO), which is why the source is aacff38.
+      - id: fr-oop_intro
+        lecture: oop_intro.md
+        kind: post-edited
+        seedModel: claude-opus-4-8
+        inSample: true
+        source: { repo: QuantEcon/lecture-python-programming, sha: 126eb49056ad1b685638c1820ebb7b4c89cabf89, path: lectures/oop_intro.md, sha256: c29eed886275a2c39b89ce17da8b8e65931a46609a124419b78191f6be058900, bytes: 9989 }
+        seed: { repo: QuantEcon/lecture-python-programming.fr, sha: bd3f431b7ac2de252ca59be79eb4b3f3635c9be5, path: lectures/oop_intro.md, sha256: 2757b6ae6f7e5672da6804ea40429942af418612845aa5abb79b391595efc097, bytes: 11571 }
+        gold: { repo: QuantEcon/lecture-python-programming.fr, sha: 3bae75c3cdce5220f0cc13316411645e5c3d02cc, path: lectures/oop_intro.md, sha256: 29f6a907362aa738f071892239dd5d7e64639e284abf0e0a2e789e37ddf85d03, bytes: 11600 }
+        notes: "Round 2, fr#78, squash-merged 2026-09-23 (includes a maintainer repair: one list marker, one NBSP). Seed = the opus-4-8 bulk seed. 4 of the 18 changed lines are translated {index} entries."
+      - id: fr-names
+        lecture: names.md
+        kind: post-edited
+        seedModel: claude-opus-4-8
+        inSample: true
+        source: { repo: QuantEcon/lecture-python-programming, sha: fe42b933280691390a2a4741b7bcbccaa86a5c2b, path: lectures/names.md, sha256: a03ab7b66fd1deede7ba9155cc14f04c0800b6d269e028bd56f257ee493a9ea8, bytes: 14221 }
+        seed: { repo: QuantEcon/lecture-python-programming.fr, sha: 3bae75c3cdce5220f0cc13316411645e5c3d02cc, path: lectures/names.md, sha256: e62be66e31d686d03e979bb76c0f08588c40928cf2c04915731294ac9c895522, bytes: 16285 }
+        gold: { repo: QuantEcon/lecture-python-programming.fr, sha: ba9b4e532769afc56f7ef152a11091c6dfccb117, path: lectures/names.md, sha256: 00f5cfbe5e4a03eccb4ca883bfb31c068c34bc510c6087a6d6c8410855fdc8bf, bytes: 16560 }
+        notes: Round 2, fr#80, squash-merged 2026-09-23 (includes a maintainer NBSP repair). Seed = the opus-4-8 bulk seed. 65 of the 85 changed lines are one term ruling (espace de noms -> espace de nommage), pinned in glossary v1.2, so about 20 lines still tell models apart.
+      - id: fr-python_oop
+        lecture: python_oop.md
+        kind: post-edited
+        seedModel: claude-opus-4-8
+        inSample: false
+        source: { repo: QuantEcon/lecture-python-programming, sha: 8973c2e03fe820f44b841b2e13ed4107500a1226, path: lectures/python_oop.md, sha256: 72f9f2c25cebb30ab99949a7361b1f55affb1e519e161f47a9ed4cd159309be8, bytes: 25777 }
+        seed: { repo: QuantEcon/lecture-python-programming.fr, sha: 673c7ccf1a81fc9d1befb915345ee35f161cc000, path: lectures/python_oop.md, sha256: 15816b73a47d27d78794f5ddfda8a3a00df1cbf2ae511dda2f7e659ffd25189c, bytes: 29476 }
+        gold: { repo: QuantEcon/lecture-python-programming.fr, sha: f9d4f3a201b478a67d557778caa57df44ad029ac, path: lectures/python_oop.md, sha256: 2cbb9a8487e2bcd80b1e8a0e089f5ffd6eff70abbf8c086062a4f4e30355117f, bytes: 29465 }
+        notes: "Round 3, held out (not yet encoded in the engine). The editor committed straight to main in the web editor (f2799d3); fr#92 (f9d4f3a, the gold) only restored 10 NBSP. Seed = parent 673c7cc: the opus-4-8 bulk seed plus 3 maintainer lines (fr#81)."
+  zh-cn:
+    name: Chinese (Simplified)
+    localize: default
+    verbatimDirectives: false
+    goldens:
+      - id: zh-cn-python_by_example
+        lecture: python_by_example.md
+        kind: edition
+        source: { repo: QuantEcon/lecture-python-programming, sha: d35eb831da23a763f43d403e96f20d43529cae53, path: lectures/python_by_example.md, sha256: 78f564a5677268ddd2b06a818d8bc79ba93a4d602d586422892593e5a1cf292e, bytes: 18251 }
+        gold: { repo: QuantEcon/lecture-python-programming.zh-cn, sha: f7afc9e30ebe46ab01af294a5305f3dc93d107ed, path: lectures/python_by_example.md, sha256: b50f4688fab5168c712a103749231a139d155f21cb87b2c7248874001e770402, bytes: 18633 }
+        notes: "Edition page at HEAD: translate init with claude-sonnet-4-6 (2026-03-20) plus sonnet-4-6 and sonnet-5 sync updates; only mechanical maintainer edits. Model output, not a human reference."
+      - id: zh-cn-functions
+        lecture: functions.md
+        kind: edition
+        source: { repo: QuantEcon/lecture-python-programming, sha: aacff3815993e8bea8db7b63df72a0a038e220c1, path: lectures/functions.md, sha256: 1fa4eab23aa4a96ab18be7e4b9e3327a9c6fdd57dbcb031b2bac4b8674b555ec, bytes: 16307 }
+        gold: { repo: QuantEcon/lecture-python-programming.zh-cn, sha: f7afc9e30ebe46ab01af294a5305f3dc93d107ed, path: lectures/functions.md, sha256: 92bbeb87cfd84117c81ed1cd42844bbe6c48fa8f7818b5194a08d0f56d9ed166, bytes: 16559 }
+        notes: "Edition page at HEAD: claude-sonnet-4-6 init plus sonnet-4-6 and sonnet-5 syncs; only mechanical maintainer edits. Model output, not a human reference."
+      - id: zh-cn-numpy
+        lecture: numpy.md
+        kind: edition
+        source: { repo: QuantEcon/lecture-python-programming, sha: d35eb831da23a763f43d403e96f20d43529cae53, path: lectures/numpy.md, sha256: 225e568121fd0c28b11cc955e9b2b8560832b189c432f0372ae703ae6dfe946c, bytes: 39618 }
+        gold: { repo: QuantEcon/lecture-python-programming.zh-cn, sha: f7afc9e30ebe46ab01af294a5305f3dc93d107ed, path: lectures/numpy.md, sha256: 4f841ca003979d0c38327e19184323c57c86cf45c50681336fcd29d10527f44d, bytes: 39278 }
+        notes: "Edition page at HEAD: claude-sonnet-4-6 init plus sonnet-4-6 and sonnet-5 syncs; only mechanical maintainer edits. Model output, not a human reference."
+  fa:
+    name: Persian (Farsi)
+    localize: default
+    verbatimDirectives: false
+    goldens:
+      - id: fa-python_by_example
+        lecture: python_by_example.md
+        kind: edition
+        source: { repo: QuantEcon/lecture-python-programming, sha: d35eb831da23a763f43d403e96f20d43529cae53, path: lectures/python_by_example.md, sha256: 78f564a5677268ddd2b06a818d8bc79ba93a4d602d586422892593e5a1cf292e, bytes: 18251 }
+        gold: { repo: QuantEcon/lecture-python-programming.fa, sha: 5c87733f1b43fa8cd41180bfbf0b248497e0cb32, path: lectures/python_by_example.md, sha256: fab00ed3eff56a37a79d1d0cb8c5177c34ed7f11dd33f5c4a0a3ebf9429bb9e0, bytes: 29242 }
+        notes: 'Edition page at HEAD: base text contributed and revised by the fa editor (fa#10, fa#14; how it was drafted is not recorded), then mechanical fixes, an "unknown"-model resync (fa#67) and model syncs. Keeps hand-reversed RTL code spans (e.g. `()append`) no model reproduces.'
+      - id: fa-functions
+        lecture: functions.md
+        kind: edition
+        source: { repo: QuantEcon/lecture-python-programming, sha: aacff3815993e8bea8db7b63df72a0a038e220c1, path: lectures/functions.md, sha256: 1fa4eab23aa4a96ab18be7e4b9e3327a9c6fdd57dbcb031b2bac4b8674b555ec, bytes: 16307 }
+        gold: { repo: QuantEcon/lecture-python-programming.fa, sha: 5c87733f1b43fa8cd41180bfbf0b248497e0cb32, path: lectures/functions.md, sha256: 5c37a913873e45ef94e72b90c4ab5611b94ad4927bb49ce796c6aa967d11bbc7, bytes: 24758 }
+        notes: "Edition page at HEAD: a machine translation (fa#13, model not recorded) revised by the fa editor (fa#54, +69/-74), then model syncs. The closest of the fa pages to a post-edited reference. 6 hand-reversed RTL code spans (e.g. `()sqrt`)."
+      - id: fa-numpy
+        lecture: numpy.md
+        kind: edition
+        source: { repo: QuantEcon/lecture-python-programming, sha: d35eb831da23a763f43d403e96f20d43529cae53, path: lectures/numpy.md, sha256: 225e568121fd0c28b11cc955e9b2b8560832b189c432f0372ae703ae6dfe946c, bytes: 39618 }
+        gold: { repo: QuantEcon/lecture-python-programming.fa, sha: 5c87733f1b43fa8cd41180bfbf0b248497e0cb32, path: lectures/numpy.md, sha256: 4aa635cac59da6f9a300eb78b1bfc0a0dbf9851326223e2818656b41ad0dc42c, bytes: 52294 }
+        notes: "Edition page at HEAD: an LLM bulk translation (fa#27, model not recorded, probably claude-sonnet-4-5-20250929), then front matter and model syncs. No human prose edits."
